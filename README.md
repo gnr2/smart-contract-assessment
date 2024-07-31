@@ -3,7 +3,7 @@ Metacrafters Functions and Errors - ETH + AVAX Project 1
 
 
 # BankContract
-
+### Description
 This is a simple Solidity smart contract that allows an owner to deposit and withdraw Ether, with balance tracking. This project demonstrates the usage of `require()`, `assert()`, and `revert()` statements in Solidity.
 
 ## Features
@@ -11,12 +11,6 @@ This is a simple Solidity smart contract that allows an owner to deposit and wit
 - **Deposit Ether:** The owner can deposit Ether into the contract.
 - **Withdraw Ether:** The owner can withdraw a specified amount of Ether from the contract.
 - **Set New Owner:** The current owner can set a new owner for the contract.
-
-## Usage
-
-This contract was developed and tested using the [Remix IDE](https://remix.ethereum.org/) with Solidity version 0.8.0.
-
-To call the functions: `deposit` and `withdraw`, an owner must first be set to a valid address using the `setOwner` function. You can set the account used to deploy the contract as the owner address.
 
 ### Functions
 
@@ -35,49 +29,23 @@ To call the functions: `deposit` and `withdraw`, an owner must first be set to a
     - Uses `require()` to ensure the new owner's address is not the zero address.
     - Uses `assert()` to ensure the new owner is correctly set.
 
-### Contract Code
 
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+## Getting Started
+### Executing the Programg
 
-contract BankContract {
+This contract was developed and tested using the [Remix IDE](https://remix.ethereum.org/) with Solidity version ^0.8.0. 
 
-    address public owner;
-    mapping(address => uint256) public balances;
+To run the program, compile the file in [Remix IDE](https://remix.ethereum.org/) after selecting the Solidity compiler tool on the navigation bar and selecting a matching compiler version (^0.8.0). Then, deploy the contract with a valid address on the deploy tool. 
 
-    // Modifier to check if the caller is the owner
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Caller is not the owner");
-        _;
-    }
+Once the contract is deployed you can start experimenting on the functions.
 
-    // Constructor to set the contract deployer as the initial owner
-    constructor() {
-        owner = msg.sender;
-    }
+To call the functions: `deposit` and `withdraw`, an owner must first be set to a valid address using the `setOwner` function. You can set the account used to deploy the contract as the owner address or choose any valid addresses provided by the Remix IDE.
 
-    // Function to deposit Ether into the contract
-    function deposit() public payable onlyOwner {
-        require(msg.value > 0, "Deposit amount must be greater than zero");
-        balances[owner] += msg.value; // Update owner's balance
-    }
+## Authors
+Gener Ellis David <br>
+[@gnr2](https://github.com/gnr2)
 
-    // Function to withdraw a specified amount of Ether from the contract
-    function withdraw(uint256 amount) public onlyOwner payable {
-        if(amount > balances[owner]){
-            revert("Insufficient Balance");
-        }
-        uint256 oldBalance = balances[owner];
-        balances[owner] -= amount;
-        payable(owner).transfer(amount);
-        assert(balances[owner] == oldBalance - amount);
-    }
+## License
+This project is licensed under the MIT License - see the LICENSE.md file for details
 
-    // Function to set a new owner
-    function setOwner(address newOwner) public onlyOwner {
-        require(newOwner != address(0), "New owner address is the zero address");
-        owner = newOwner;
-        assert(owner == newOwner);
-    }
-}
+
