@@ -6,7 +6,7 @@ Metacrafters Functions and Errors - ETH + AVAX Project 1
 ### Description
 This is a simple Solidity smart contract that allows an owner to deposit and withdraw Ether, with balance tracking. This project demonstrates the usage of `require()`, `assert()`, and `revert()` statements in Solidity.
 
-## Features
+### Features
 
 - **Deposit Ether:** The owner can deposit Ether into the contract.
 - **Withdraw Ether:** The owner can withdraw a specified amount of Ether from the contract.
@@ -31,7 +31,7 @@ This is a simple Solidity smart contract that allows an owner to deposit and wit
 
 
 ## Getting Started
-### Executing the Programg
+### Executing the Program
 
 This contract was developed and tested using the [Remix IDE](https://remix.ethereum.org/) with Solidity version ^0.8.0. 
 
